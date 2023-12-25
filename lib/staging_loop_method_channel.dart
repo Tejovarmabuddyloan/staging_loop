@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
+import 'dart:async';
 import 'staging_loop_platform_interface.dart';
 import 'dart:io';
 import 'package:advertising_id/advertising_id.dart'; //initDeviceId
@@ -17,16 +17,12 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   @visibleForTesting
   final methodChannel = const MethodChannel('staging_loop');
 
+
   @override
-  Future<String> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
-  }
-  @override
-  Future<String> initDeviceId() async {
-    String advertisingId;
+  FutureOr<String?> initDeviceId() async {
+    String? advertisingId;
     try {
-      advertisingId =  await AdvertisingId.id(true);
+      advertisingId =   await AdvertisingId.id(true);
     } on PlatformException {
       advertisingId = 'Failed to get advertising id.';
     }
@@ -34,14 +30,14 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   }
   /// Retrieves the package name.
   @override
-  Future<String> getpac() async {
+  FutureOr<String> getpac() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String packageName = packageInfo.packageName;
     return packageName;
   }
   /// Retrieves the IP address.
   @override
-  Future<String> getIP() async {
+  FutureOr<String> getIP() async {
     try {
       var ipAddress = IpAddress(type: RequestType.json);
       dynamic data = await ipAddress.getIpAddress();
@@ -53,7 +49,7 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   }
   /// Retrieves the device type.
   @override
-  Future<String> getDeviceType() async {
+  FutureOr<String?> getDeviceType() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -62,12 +58,12 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       return iosInfo.utsname.machine;
     }
-    return null;
+    return 'unknown';
   }
   /// Retrieves the current time.
 
   @override
-  Future<String> getTime() async {
+  FutureOr<String> getTime() async {
     DateTime now = DateTime.now();
     // String date = '${now.year}-${now.month}-${now.day}';
     String time = '${now.hour}:${now.minute}:${now.second}';
@@ -76,7 +72,7 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   }
   /// Retrieves the current date.
   @override
-  Future<String> getDate() async {
+  FutureOr<String> getDate() async {
     DateTime now = DateTime.now();
     String date = '${now.year}-${now.month}-${now.day}';
     return date;
@@ -84,14 +80,14 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   }
 
   @override
-  Future<String> getTimezone() async {
+  FutureOr<String> getTimezone() async {
     final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
     return currentTimeZone;
   }
 
   /// Retrieves the platform.
   @override
-  Future<String> getPlatform() async {
+  FutureOr<String> getPlatform() async {
     if (Platform.isAndroid) {
       return 'Android';
     } else if (Platform.isIOS) {
@@ -103,7 +99,7 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   /// Retrieves the network connection type.
 
   @override
-  Future<String> getConnectionType() async {
+  FutureOr<String> getConnectionType() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
       return 'Mobile';

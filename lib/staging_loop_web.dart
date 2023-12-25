@@ -3,6 +3,7 @@
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html show window;
+import 'dart:async';
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
@@ -19,7 +20,7 @@ class StagingLoopWeb extends StagingLoopPlatform {
 
   /// Returns a [String] containing the version of the platform.
   @override
-  Future<String> getPlatformVersion() async {
+  FutureOr<String> getPlatformVersion() async {
     final version = html.window.navigator.userAgent;
     return version;
   }

@@ -1,44 +1,45 @@
 
 import 'staging_loop_platform_interface.dart';
+import 'dart:async';
 
 class StagingLoop {
-  Future<String> getPlatformVersion() {
+  FutureOr<String> getPlatformVersion() {
     return StagingLoopPlatform.instance.getPlatformVersion();
   }
 
 
-  Future<String> initDeviceId() {
+  FutureOr<String?> initDeviceId() {
     return StagingLoopPlatform.instance.initDeviceId();
   }
 
-  Future<String> getpac() {
+  FutureOr<String> getpac() {
     return StagingLoopPlatform.instance.getpac();
   }
 
-  Future<String> getIP() {
+  FutureOr<String> getIP() {
     return StagingLoopPlatform.instance.getIP();
   }
 
-  Future<String> getPlatform() {
+  FutureOr<String> getPlatform() {
     return StagingLoopPlatform.instance.getPlatform();
   }
 
-  Future<String> getDeviceType() {
+  FutureOr<String?> getDeviceType() {
     return StagingLoopPlatform.instance.getDeviceType();
   }
 
-  Future<String> getTime() {
+  FutureOr<String> getTime() {
     return StagingLoopPlatform.instance.getTime();
   }
 
-  Future<String> getDate() {
+  FutureOr<String> getDate() {
     return StagingLoopPlatform.instance.getDate();
   }
 
-  Future<String> getConnectionType() {
+  FutureOr<String> getConnectionType() {
     return StagingLoopPlatform.instance.getConnectionType();
   }
-  Future<String> getTimezone() {
+  FutureOr<String> getTimezone() {
     return StagingLoopPlatform.instance.getTimezone();
   }
 }

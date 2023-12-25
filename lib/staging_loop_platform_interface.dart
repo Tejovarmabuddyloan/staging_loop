@@ -1,5 +1,5 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
+import 'dart:async';
 import 'staging_loop_method_channel.dart';
 
 abstract class StagingLoopPlatform extends PlatformInterface {
@@ -23,41 +23,41 @@ abstract class StagingLoopPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String> getPlatformVersion() {
+  FutureOr<String> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
-  Future<String> initDeviceId() {
+  FutureOr<String?> initDeviceId() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getpac() {
+  FutureOr<String> getpac() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getIP() {
+  FutureOr<String> getIP() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getPlatform() {
+  FutureOr<String> getPlatform() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getDeviceType() {
+  FutureOr<String?> getDeviceType() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getTime() {
+  FutureOr<String> getTime() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getDate() {
+  FutureOr<String> getDate() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 
-  Future<String> getConnectionType() {
+  FutureOr<String> getConnectionType() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
-  Future<String> getTimezone() {
+  FutureOr<String> getTimezone() {
     throw UnimplementedError('initDeviceId() has not been implemented.');
   }
 }

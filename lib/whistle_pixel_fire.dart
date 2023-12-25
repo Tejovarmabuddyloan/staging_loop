@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:staging_loop/staging_loop.dart';
-import 'package:timezone/data/latest.dart' as tz;
 
 void whistleLoopEvents(String eventName) async {
-  tz.initializeTimeZones();
-  String deviceId = await StagingLoop ().initDeviceId();
+
+  String? deviceId = await StagingLoop ().initDeviceId();
   String packageName = await StagingLoop ().getpac();
   String networkType = await StagingLoop ().getConnectionType();
   String ip = await StagingLoop ().getIP();
-  String userAgent = await StagingLoop ().getDeviceType();
+  String? userAgent = await StagingLoop ().getDeviceType();
   String clickedTime = await StagingLoop ().getTime();
   String clickedDate = await StagingLoop ().getDate();
   String platformOs = await StagingLoop ().getPlatform();

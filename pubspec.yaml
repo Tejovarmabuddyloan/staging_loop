@@ -1,10 +1,10 @@
 name: staging_loop
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Tejovarmabuddyloan/staging_loop.git
 
 environment:
-  sdk: '>=2.11.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
   flutter: ">=2.5.0"
 
 dependencies:
@@ -12,15 +12,14 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  http:
-  logging:
-  package_info_plus:
-  device_info_plus:
-  advertising_id:
-  get_ip_address:
-  connectivity_plus:
-  timezone:
-  flutter_timezone:
+  http: ^0.13.3
+  plugin_platform_interface: ^2.0.2
+  package_info_plus: ^1.4.3+1
+  device_info_plus: ^8.2.2
+  advertising_id: ^2.6.0
+  get_ip_address: ^0.0.5
+  connectivity_plus: ^5.0.2
+  flutter_timezone: ^1.0.8
 
 dev_dependencies:
   flutter_test:
