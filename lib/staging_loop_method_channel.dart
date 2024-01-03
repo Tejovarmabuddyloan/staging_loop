@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
@@ -6,10 +8,11 @@ import 'dart:io';
 import 'package:advertising_id/advertising_id.dart'; //initDeviceId
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:get_ip_address/get_ip_address.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:http/http.dart' as http;
+
 
 /// An implementation of [StagingLoopPlatform] that uses method channels.
 class MethodChannelStagingLoop extends StagingLoopPlatform {
@@ -38,16 +41,17 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
   /// Retrieves the IP address.
   @override
   FutureOr<String> getIP() async {
-    try {
-      var ipAddress = IpAddress(type: RequestType.json);
-      dynamic data = await ipAddress.getIpAddress();
-      return data['ip'].toString();
-    } on IpAddressException catch (exception) {
-      debugPrint(exception.message);
-      return 'Failed to get IP address.';
+    final response = await http.get(Uri.parse(
+        'http://13.232.216.75/whistle-follow-utils/ip_utils_loop.php'));
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      return jsonResponse['data']['ip'];
+    } else {
+      throw Exception('Failed to fetch IP');
     }
   }
-  /// Retrieves the device type.
+
+    /// Retrieves the device type.
   @override
   FutureOr<String?> getDeviceType() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();

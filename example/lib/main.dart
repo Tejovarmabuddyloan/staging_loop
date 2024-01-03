@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:staging_loop/whistle_pixel_fire.dart';
 
 void main() {
