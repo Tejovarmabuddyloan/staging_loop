@@ -4,6 +4,8 @@ import 'package:staging_loop/whistle_pixel_fire.dart';
 
 void main() {
   runApp( MyApp());
+  WhistleLoop.initialize();
+
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +24,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+void initState() {
+    super.initState();
 
+  }
 
 
   @override
@@ -36,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               child: Text('Fetch All Data'),
               onPressed: () {
-                whistleLoopEvents("onlcikmybutton");
+                whistleLoopEvents("Sendsms");
 
               },
             ),

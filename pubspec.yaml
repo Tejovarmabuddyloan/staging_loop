@@ -1,6 +1,7 @@
 name: staging_loop
-description: whistle loop staging loop plugin
-version: 0.0.2
+description:  A new Flutter package that provides enhanced security for API calls.
+  In the latest version, we have added token security. This includes fetching a token from the server and including it in subsequent API requests.
+version: 0.0.3
 homepage: https://github.com/Tejovarmabuddyloan/staging_loop.git
 
 environment:

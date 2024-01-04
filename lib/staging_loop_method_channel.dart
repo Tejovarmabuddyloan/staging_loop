@@ -123,4 +123,5 @@ class MethodChannelStagingLoop extends StagingLoopPlatform {
       return 'Unknown';
     }
   }
+
 }
